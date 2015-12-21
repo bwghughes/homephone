@@ -22,9 +22,10 @@ def pull_out_number(to):
 
 @app.route("/zah3Ienga6vaereGhahqueiWo0ieva8ahtoh1phesi0miqueeh")
 def phone():
-    log.info(request.args)
-    number = pull_out_number(request.args.get("To"))
-    return jsonify(request.form)
+    to = request.args.get("To")
+    log.info("Deteched CallerID in {}".format(to))
+    number = pull_out_number(to)
+    return message.format(number)
      
 
 if __name__ == "__main__":
