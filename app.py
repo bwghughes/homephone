@@ -6,27 +6,18 @@ import logging
 logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
 
-message = """
-<?xml version="1.0" encoding="UTF-8"?>
-<Response>
-    <Dial callerId="+441283760715">
-        <Number>{}</Number>
-    </Dial>
-</Response>
-"""
+r = '<?xml version="1.0" encoding="UTF-8"?><Response><Dial callerId="+441283760715"><Number>{0}</Number></Dial></Response>'
 
-def pull_out_number(to):
-    matches = re.search("([0-9]+)", to)
-    log.info("Got {}".format(matches.groups()))
-    return matches.groups()[0]
 
-@app.route("/zah3Ienga6vaereGhahqueiWo0ieva8ahtoh1phesi0miqueeh")
-def phone():
-    to = request.args.get("To")
-    log.info("Deteched CallerID in {}".format(to))
-    number = pull_out_number(to)
-    return message.format(number)
-     
+@app.route("/zah3Ienga6vaereGhahqueiWo0ieva8ahtoh1phesi0miqueeh", methods=["POST"])
+def call_forward():
+    p = re.search("([0-9]+)", request.form['To'], re.I).groups()[0]
+    return Response(r.format(p), mimetype='text/xml')
+
+@app.route("/ping", methods=["GET"])
+def ping():
+    return "OK"
+
 
 if __name__ == "__main__":
     app.run()
