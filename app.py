@@ -17,12 +17,13 @@ message = """
 
 def pull_out_number(to):
     matches = re.search("/:([0-9]+)@/", to)
+    log.info("Got {}".format(matches.groups))
     return matches.groups()[0]
 
 @app.route("/zah3Ienga6vaereGhahqueiWo0ieva8ahtoh1phesi0miqueeh")
 def phone():
-    log.info(request.form)
     log.info(request.args)
+    number = pull_out_number(request.args.get("To"))
     return jsonify(request.form)
      
 
