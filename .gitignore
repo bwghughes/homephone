@@ -1,0 +1,11 @@
+data
+excel
+htmlcov
+staticAssets.go
+.cache/
+.coverage
+.python-version
+__pycache__
+.env
+*.pyc
+test-reports
