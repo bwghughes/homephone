@@ -22,6 +22,7 @@ def pull_out_number(to):
 @app.route("/zah3Ienga6vaereGhahqueiWo0ieva8ahtoh1phesi0miqueeh")
 def phone():
     log.info(request.form)
+    log.info(request.args)
     return jsonify(request.form)
      
 
